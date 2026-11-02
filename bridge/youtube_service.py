@@ -21,8 +21,13 @@ class YoutubeStream(Service):
 
             print("Estos devices %s estan enviandos datos a tu stream %s en youtube" % (buf, stream_reference))
 
-    def stop_stream(self, stream_reference):
-        print('Cerrando stream %s en youtube' % stream_reference)
+    def stop_stream(self, stream_reference, notify=True, log_to_file=False, retries=3):
+        if notify:
+            if log_to_file:
+                with open("streams.log", "a") as log:
+                    log.write("Cerrando stream %s en youtube\n" % stream_reference)
+            else:
+                print('Cerrando stream %s en youtube' % stream_reference)
         
         
         
